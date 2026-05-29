@@ -13,7 +13,7 @@ const path = require("path");
 // Imports CUSTOM function from folder config to connect MongoDB
 const connectDB = require("../config/db");
 
-const authRoutes = require('../routes/authRoute');
+const authRoutes = require('../routes/authRoutes');
 
 // backend application container
 const app = express();
@@ -36,7 +36,7 @@ connectDB();
 // lets server read JSON from requests
 app.use(express.json());
 
-app.use()
+app.use("/api/auth", authRoutes);
 
 // MORE
 app.use("/backend/uploads", express.static(path.join(__dirname, "uploads")));
