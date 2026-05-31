@@ -15,6 +15,7 @@ const connectDB = require("../config/db");
 
 const authRoutes = require('../routes/authRoutes');
 const bookRoutes = require('../routes/bookRoutes');
+const aiRoutes = require('../routes/aiRoutes');
 
 // backend application container
 const app = express();
@@ -38,7 +39,8 @@ connectDB();
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-app.use("/api/book",bookRoutes);
+app.use("/api/books",bookRoutes);
+app.use("/api/ai", aiRoutes);
 
 // MORE
 app.use("/backend/uploads", express.static(path.join(__dirname, "uploads")));

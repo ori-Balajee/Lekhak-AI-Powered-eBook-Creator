@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 //create uploads directory if it doesn't exist
-const upLoadDir = "uploads";
+const uploadDir = "uploads";
 if(!fs.existsSync(uploadDir)){
     fs.mkdirSync(uploadDir, {recursive : true});
 }
@@ -39,5 +39,9 @@ function checkFileType(file,cb){
 const upload = multer({
     storage:storage,
     limits: {fileSize: 2*1024*1024}, // 2MB LIMIT
-    file
-})
+    fileFilter: function (req, file,cb){
+        checkFileType(file,cb);
+    },
+}).single("coverImage"); // field name for the uploaded file
+
+module.exports = upload;
